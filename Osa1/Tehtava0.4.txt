@@ -1,0 +1,56 @@
+kayttaja->selain:
+note left of selain
+  kayttaja kirjoittaa tekstikenttaan jotain
+  ja painaa laheta -nappia
+end note
+
+selain->palvelin: POST fullstack-exampleapp.herokuapp.com/new_note
+note left of palvelin
+  palvelin tallentaa lahetyn muistiinpanon
+  ja ohjaa takaisin notes-sivulle
+end note
+palvelin->selain: status 302, ohjaa notes-sivulle
+
+note left of selain
+  selain pyytaa notes-sivua
+end note
+
+selain->palvelin: GET fullstack-exampleapp.herokuapp.com/notes
+palvelin->selain: status 304
+
+note left of palvelin
+  notes-sivun sisalto ei ole muuttunut,
+  joten palautetaan 304 ja sivun sisalto
+end note
+
+note left of selain
+  haetaan tiedostot, joihin viitataan notes-sivulla
+end note
+
+selain->palvelin: GET fullstack-exampleapp.herokuapp.com/main.css
+palvelin->selain: status 304
+
+note left of palvelin
+  css-tiedoston sisalto ei ole muuttunut,
+  joten palautetaan 304 ja tiedoston sisalto
+end note
+
+selain->palvelin: GET fullstack-exampleapp.herokuapp.com/main.js
+palvelin->selain: status 304
+
+note left of palvelin
+  ei muutoksia, 304 ja sisalto
+end note
+
+note left of selain
+  kun kaikki muu on ladattu, selain kaynnistaa Javascriptin
+  pyydetaan tarvittava data.json
+end note
+
+selain->palvelin: GET fullstack-exampleapp.herokuapp.com/data.json
+palvelin->selain: status 200
+
+note left of palvelin
+  json-dataan on tullut muutoksia, joten
+  palautetaan 200 ja uusi sisalto
+end note
