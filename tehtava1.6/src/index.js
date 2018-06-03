@@ -7,28 +7,6 @@ const Otsikko = (props) => {
     )
 }
 
-const Sisalto = (props) => {
-    return (
-        <div>
-            <Osa osa={props.osat[0]} />
-            <Osa osa={props.osat[1]} />
-            <Osa osa={props.osat[2]} />
-        </div>
-    )
-}
-
-const Osa = (props) => {
-    return (
-        <p>{props.osa.nimi} {props.osa.tehtavia}</p>
-    )
-}
-
-const Yhteensa = (props) => {
-    return (
-        <p>yhteensä {props.osat[0].tehtavia + props.osat[1].tehtavia + props.osat[2].tehtavia} tehtävää</p>
-    )
-}
-
 class App extends React.Component  {
     constructor(props) {
         super(props)
